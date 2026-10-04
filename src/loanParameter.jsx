@@ -28,7 +28,7 @@ function MyElement() {
         interest = Math.floor(interest);
         if (payment <= principal*(interest/1200))
         {
-            //amountRemain[0] = {amount : "Will never pay off"};
+            amountRemain[0] = "Will never pay off";
             return amountRemain; 
         }
         for (var i = 0; i < 1200; i++)
@@ -38,13 +38,11 @@ function MyElement() {
             principal = (principal+owed) + (payment * -1);
             if (principal <= 0)
             {
-                amountRemain[i] = {amount: 0};
-                amountRemain[i] = {month: i};
+                amountRemain[i] = 0;
                 break;
             }
-            amountRemain[i] = {amount: Math.round((principal + Number.EPSILON) * 100)/100};
-            amountRemain[i] = {month: i};
-        }
+            amountRemain[i] = Math.round((principal + Number.EPSILON) * 100)/100;
+        }  
         return amountRemain;
     }
 
@@ -71,7 +69,7 @@ function MyElement() {
     <input type="range" id="payment" name="payment" value={paymentVal} onChange={handlePayment} min="1" max="1000000" />
     </label>
     <p>Monthly Payments: ${paymentVal}</p>
-    {test.map(item => <li>Month {item.month}: {item.amount}</li>)}
+    {test.map(item => <li>${item}</li>)}
     </form>
     </div>)
 }
